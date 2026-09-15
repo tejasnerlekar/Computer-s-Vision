@@ -18,6 +18,7 @@ def update():
     latest_data = request.json
     return jsonify({"success": True})
 
+
 @app.route("/latest", methods=["GET"])
 def latest():
     return jsonify(latest_data)
