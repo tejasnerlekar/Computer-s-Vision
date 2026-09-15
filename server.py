@@ -23,7 +23,11 @@ def update():
 
 @app.route("/latest", methods=["GET"])
 def latest():
-    return jsonify(latest_data)
+    return jsonify({
+        "has_image": "image" in latest_data,
+        "label": latest_data.get("label", ""),
+        "timestamp": latest_data.get("timestamp", 0)
+    })
 
 
 if __name__ == "__main__":
