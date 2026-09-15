@@ -8,11 +8,9 @@ latest_data = {
     "message": "Waiting for main computer..."
 }
 
-
 @app.route("/")
 def home():
     return "Computer's Vision relay is running."
-
 
 @app.route("/update", methods=["POST"])
 def update():
@@ -20,15 +18,9 @@ def update():
     latest_data = request.json
     return jsonify({"success": True})
 
-
 @app.route("/latest", methods=["GET"])
 def latest():
-    return jsonify({
-        "has_image": "image" in latest_data,
-        "label": latest_data.get("label", ""),
-        "timestamp": latest_data.get("timestamp", 0)
-    })
-
+    return jsonify(latest_data)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
